@@ -25,7 +25,7 @@ jobs:
       uses: azure/webapps-deploy@v2
       with:
         app-name: 'heimdall-core'  # Replace with your Azure Web App name
-        #slot-name: 'production'  # Replace with the deployment slot name if using slots
+        slot-name: 'production'  # Replace with the deployment slot name if using slots
         publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}  # Add this secret to your GitHub repository with the Azure Web App publish profile content
         package: '$(Build.ArtifactStagingDirectory)/*.jar'
         # Change the package path if your Maven build output path is different
@@ -35,7 +35,7 @@ jobs:
 
     - name: Configure Azure Web App for Java
       run: |
-        az webapp config set -n heimdall-webapp -g MyResourceGroup --java-version 11
+        az webapp config set -n heimdall-core -g MyResourceGroup --java-version 11
         # Replace 'MyResourceGroup' with your actual Azure resource group name
 
     # Add more steps if required, such as setting up environment variables and configuring databases
